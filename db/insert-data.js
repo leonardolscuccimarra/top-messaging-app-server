@@ -71,13 +71,13 @@ INSERT INTO private_messages (sender_user_id, receiver_user_id, created_at, body
 (3, 8, '2024-01-20 16:30:00', 'Hannah, have you read the new mystery novel?');
 
 -- Insert groups
-INSERT INTO groups (name, description) VALUES
-('Tech Enthusiasts', 'For all things technology and programming'),
-('Food Lovers', 'Share recipes and restaurant recommendations'),
-('Book Club', 'Monthly book discussions and recommendations'),
-('Gaming Guild', 'Video game discussions and multiplayer sessions'),
-('Fitness Community', 'Workout tips and motivation'),
-('Music Makers', 'For musicians and music producers');
+INSERT INTO groups (name, invite_code, description) VALUES
+('Tech Enthusiasts', 'tech_e', 'For all things technology and programming'),
+('Food Lovers', 'food_l', 'Share recipes and restaurant recommendations'),
+('Book Club', 'book_c', 'Monthly book discussions and recommendations'),
+('Gaming Guild', 'gaming_g', 'Video game discussions and multiplayer sessions'),
+('Fitness Community', 'fitness_c', 'Workout tips and motivation'),
+('Music Makers', 'music_m', 'For musicians and music producers');
 
 -- Insert users into groups with some owners
 INSERT INTO users_groups (user_id, group_id, is_owner) VALUES
