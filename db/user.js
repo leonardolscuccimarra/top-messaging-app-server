@@ -102,6 +102,16 @@ async function setOnlineStatus(id, status) {
   return true;
 }
 
+async function modifyPasswordById(id, newPassword) {
+  const query = `
+    UPDATE users SET password = $1 WHERE id=$2;
+  `;
+  const params = [newPassword, id];
+
+  await runQuery(query, params);
+  return true;
+}
+
 module.exports = {
   createUser,
   usernameExists,
@@ -110,4 +120,5 @@ module.exports = {
   getUserFriendsById,
   getUserByFriendCode,
   setOnlineStatus,
+  modifyPasswordById,
 };
