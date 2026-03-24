@@ -132,6 +132,7 @@ const getMembers = [
         id: member.id,
         publicName: member.public_name,
         isOnline: member.is_online,
+        isOwner: member.is_owner,
       })),
     });
   },

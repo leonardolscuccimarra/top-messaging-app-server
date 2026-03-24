@@ -89,9 +89,11 @@ async function updateUserGroupLastSeen(uid, gid, lastSeen) {
 
 async function getGroupInfo(gid) {
   const query = `
-    SELECT *
-    FROM groups
-    WHERE id = $1`;
+    SELECT g.*, ug.user_id as owner_id
+    FROM groups g
+    LEFT JOIN users_groups ug ON g.id = ug.group_id AND (ug.is_owner = true OR is_owner IS NULL)
+    WHERE g.id = $1;
+  `;
   const params = [gid];
 
   const res = await runQuery(query, params);
@@ -137,13 +139,14 @@ async function isOwner(uid, gid) {
 
 async function getGroupMembersById(id) {
   const query = `
-    SELECT u.id, p.public_name, u.is_online
+    SELECT u.id, p.public_name, u.is_online, ug.is_owner
     FROM users_groups ug
     JOIN users u
       ON ug.user_id = u.id
     JOIN profiles p
       ON u.id = p.user_id
-    WHERE ug.group_id = $1;
+    WHERE ug.group_id = $1
+    ORDER BY ug.is_owner DESC, p.public_name;
     `;
   const params = [id];
 

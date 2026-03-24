@@ -431,9 +431,11 @@ describe("test group route", function () {
             expect(response.body.members[0].id).toBeDefined();
             expect(response.body.members[0].publicName).toBeDefined();
             expect(response.body.members[0].isOnline).toBeDefined();
+            expect(response.body.members[0].isOwner).toEqual(true);
             expect(response.body.members[1].id).toBeDefined();
             expect(response.body.members[1].publicName).toBeDefined();
             expect(response.body.members[1].isOnline).toBeDefined();
+            expect(response.body.members[1].isOwner).toEqual(false);
           });
       });
     });
