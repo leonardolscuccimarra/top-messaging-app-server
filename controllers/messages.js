@@ -104,6 +104,7 @@ const getGroupChat = [
       req.locals.group.id,
       new Date(),
     );
+
     res.status(200).json({
       messages: messages.map((message) => ({
         id: message.id,
@@ -120,6 +121,7 @@ const getPrivateChats = [
   authenticate,
   async function (req, res) {
     const privateChats = await messagesDB.getPrivateChats(req.user.id);
+
     res.status(200).json({
       privateChats: privateChats.map((pc) => ({
         id: pc.id,
